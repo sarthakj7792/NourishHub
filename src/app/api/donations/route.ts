@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
 import { getSession } from '@/lib/auth';
 import { donationSchema } from '@/lib/validations';
 import { analyzeFoodPerishability } from '@/lib/ai-engine';
@@ -15,7 +14,7 @@ export async function GET(req: Request) {
 
     const session = await getSession();
 
-    const where: Prisma.FoodDonationWhereInput = {};
+    const where: Record<string, any> = {};
     if (category && category !== 'ALL') {
       where.category = category;
     }

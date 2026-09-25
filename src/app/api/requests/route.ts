@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { Prisma } from '@prisma/client';
 import { getSession } from '@/lib/auth';
 import { requestSchema } from '@/lib/validations';
 
@@ -15,7 +14,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url);
     const status = searchParams.get('status');
 
-    const where: Prisma.RecipientRequestWhereInput = {};
+    const where: Record<string, any> = {};
     if (session.role === 'RECIPIENT') {
       where.recipientId = session.id;
     }
