@@ -35,7 +35,7 @@ export async function POST(req: Request) {
 
     const parsedTags: string[] = JSON.parse(donation.dietaryTags || '[]');
 
-    const formattedRequests = pendingRequests.map((r) => ({
+    const formattedRequests = pendingRequests.map((r: typeof pendingRequests[number]) => ({
       id: r.id,
       recipientName: r.recipient?.name || 'Anonymous Recipient',
       householdSize: r.householdSize,
